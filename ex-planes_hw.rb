@@ -12,36 +12,35 @@
 
 class Airplane
   @@how_many_wings = 2
-    attr_accessor :model, :make, :owner, :miles_flown
   def initialize model, make, owner, miles_flown
     puts "Airplane created"
-    @model = model
-    @make = make
-    @owner = owner
-    @miles_flown = miles_flown
+    @model = model ; @make = make ; @owner = owner ; @miles_flown = miles_flown
   end
-  # def airplane_stats(airplane_instance_object)
-  #   puts airplane_instance_object.model
-  #   # puts airplane_instance_object.make
-  #   # puts airplane_instance_object.owner
-  #   # puts airplane_instance_object.miles_flown
-  #   # puts airplane_instance_object.how_many_wings
-  # end
-  def how_many_wings
-    puts @@how_many_wings
-  end
+  def model ; @model ; end
+  def make ; @make ; end
+  def owner ; @owner ; end
+  def miles_flown ; @miles_flown ; end
+  def airplane_stats ; @model ; @make ; @owner ; @miles_flown ; @how_many_wings ; end
+  def how_many_wings ; @@how_many_wings ; end
 end
 
+airplane1 = Airplane.new("model1", "make1", "man1", 100_000)
+airplane2 = Airplane.new("model2", "make2", "man2", 200_000)
+airplane3 = Airplane.new("model3", "make2", "man3", 300_000)
 
-airplane1 = Airplane.new("model1", "make1", "man1", 100000)
-airplane2 = Airplane.new("model2", "make2", "man2", 200000)
-
+puts airplane1.make
+puts airplane2.make
 puts airplane1.model
 puts airplane2.model
-airplane1.how_many_wings
+puts airplane1.owner
+puts airplane1.miles_flown
+puts airplane1.how_many_wings
 
-# airplane_stats(airplane1) => shoots out error
-# puts airplane1.how_many_wings => result comes back with error
+# For some reason, I can't call airplane stats and I don't know entirely why. I suspect it's because I can only get one value in the method. 
+puts airplane1.airplane_stats
+puts airplane2.airplane_stats
+
+
 
 # Create an Hangar class
 #   instance methods:
@@ -59,29 +58,38 @@ airplane1.how_many_wings
 # NOTE: airplanes must be added to a hangar using add_airplane.
 
 class Hangar
-  attr_accessor :owner, :name, :airplanes, :capacity, 
-  def initialize owner, name, capacity, airplanes
-  puts "Hangar created"
+  def initialize owner, name, capacity
+  puts "#{name} Hangar created"
   @owner = owner
   @name = name
   @capacity = capacity
-  @airplanes = airplanes
   end
-  def airplanes_count(hangar_airplanes_instance_object)
-    hangar_airplanes_instance_object.length
+  def owner ; @owner ; end
+  def name ; @name ; end
+  def capacity ; @capacity ; end
+  def airplanes
+    @airplanes
+  def add_airplane(airplanes)
+    if airplanes.class == Airplane
+      if airplanes_count < capacity
+        airplanes << @airplanes
+        puts "Airplane added to #{name} hangar"
+      end
+      else puts "You don't have any more space in #{name} hangar, stupid. The FAA should fire you."
+      end
+    else puts "Stop trying to add objects that aren't Airplane class to the Hangar! No, you can't park your car here."
+    end
   end
-  def add_airplane(airplane_instance_object, hangar_airplanes_instance_object)
-    if airplanes_count(hangar_airplanes_intance_object) < capacity
-      hangar_airplanes_instance_object = airplanes
-      hangar_airplanes_instance_object << airplane_instance_object
-      puts "Airplane added to hangar"
-    else
-      puts "You don't have any more space in that hangar, stupid."
+  def airplanes_count
+    airplanes.length
   end
 end
 
-hangar1 = Hangar.new owner1, name1, 0, 4
 
-puts airplanes_count(hangar1)
+hangar1 = Hangar.new "owner1", "name1", 0
+puts hangar1.owner
+puts hangar1.name
+puts hangar1.capacity
 
-add_airplane(airplane1, hangar1)
+hangar1.add_airplane(airplane1)
+hangar1.add_airplane airplane2
