@@ -1,0 +1,26 @@
+--Hangar
+
+has_many :airplanes
+belongs_to :airline
+
+
+--Airplane
+
+belongs_to :hangar
+belongs_to :pilot
+has_many :passenger through trips
+
+--Pilot
+
+has_many :planes
+
+--Airline
+has_many :hangars
+
+--Passenger
+has_many :airplanes through trips
+
+
+--Trip
+belongs_to :passenger
+belongs_to :airplane
