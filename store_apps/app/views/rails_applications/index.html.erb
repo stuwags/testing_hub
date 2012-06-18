@@ -1,0 +1,23 @@
+<h1>Listing rails_applications</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @rails_applications.each do |rails_application| %>
+  <tr>
+    <td><%= rails_application.name %></td>
+    <td><%= link_to 'Show', rails_application %></td>
+    <td><%= link_to 'Edit', edit_rails_application_path(rails_application) %></td>
+    <td><%= link_to 'Destroy', rails_application, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Rails application', new_rails_application_path %>

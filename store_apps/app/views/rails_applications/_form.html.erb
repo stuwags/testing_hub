@@ -1,0 +1,52 @@
+<%= form_for(@rails_application) do |f| %>
+  <% if @rails_application.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rails_application.errors.count, "error") %> prohibited this rails_application from being saved:</h2>
+
+      <ul>
+      <% @rails_application.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+<div>
+
+  <h2>Creator</h2>
+     <%= f.fields_for :creator do |creator| %>
+      <div class="field">
+        <%= creator.label :name %><br />
+        <%= creator.text_field :name %>
+      </div>
+      <% end %>
+
+  <h2>Controllers</h2>
+    <% @rails_application.controllers.each do %>
+         <%= f.fields_for :controller do |controller| %>
+      <div class="field">
+        <%= controller.label :name %><br />
+        <%= controller.text_field :name %>
+      </div>
+      <% end %>
+    <% end %>
+
+ <h2>Models</h2>
+   <% @rails_application.models.each do %>
+       <%= f.fields_for :model do |model| %>
+     <div class="field">
+        <%= model.label :name %><br />
+        <%= model.text_field :name %>
+      </div>
+      <% end %>
+    <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
