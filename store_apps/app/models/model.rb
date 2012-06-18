@@ -1,5 +1,5 @@
 class Model < ActiveRecord::Base
   attr_accessible :name
 
-  belongs_to :RailsApplication
+  belongs_to :rails_application
 end

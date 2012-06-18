@@ -15,23 +15,23 @@ ActiveRecord::Schema.define(:version => 20120618053310) do
 
   create_table "controllers", :force => true do |t|
     t.string   "name"
-    t.integer  "RailsApplication_id"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.integer  "rails_application_id"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
   create_table "creators", :force => true do |t|
     t.string   "name"
-    t.integer  "RailsApplication_id"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.integer  "rails_application_id"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
   create_table "models", :force => true do |t|
     t.string   "name"
-    t.integer  "RailsApplication_id"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.integer  "rails_application_id"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
   create_table "rails_applications", :force => true do |t|

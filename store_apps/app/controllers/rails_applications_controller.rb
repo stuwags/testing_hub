@@ -25,9 +25,9 @@ class RailsApplicationsController < ApplicationController
   # GET /rails_applications/new.json
   def new
     @rails_application = RailsApplication.new
-    @rails_Application.Creators.build
-    2.times { @rails_application.Controllers.build }
-    2.times { @rails_application.Models.build}
+    @rails_application.build_creator
+    2.times { @rails_application.controllers.build }
+    2.times { @rails_application.models.build}
 
     respond_to do |format|
       format.html # new.html.erb
@@ -43,7 +43,7 @@ class RailsApplicationsController < ApplicationController
   # POST /rails_applications
   # POST /rails_applications.json
   def create
-    @rails_application = RailsApplication.new(params[:rails_application])
+    @rails_application = RailsApplication.new(params[:RailsApplication])
 
     respond_to do |format|
       if @rails_application.save
